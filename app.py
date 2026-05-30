@@ -7,7 +7,6 @@ from flask import (
 )
 from gemini_ai import recommend_with_gemini
 from sqlalchemy import or_
-import os
 from flask_sqlalchemy import SQLAlchemy
 
 from flask_login import (
@@ -480,7 +479,7 @@ def admin_orders():
 # =========================
 # RUN
 # =========================
-
+import os
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
