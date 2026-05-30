@@ -1,0 +1,281 @@
+
+body {
+
+    font-family: 'Segoe UI', sans-serif;
+
+    background: #f5f7fa;
+
+    overflow-x: hidden;
+}
+
+html {
+
+    scroll-behavior: smooth;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar {
+
+    backdrop-filter: blur(10px);
+
+    background: linear-gradient(
+        90deg,
+        #0f5132,
+        #198754
+    ) !important;
+}
+
+.navbar-brand {
+
+    letter-spacing: 2px;
+}
+
+.nav-link {
+
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+
+    color: #ffd166 !important;
+}
+
+/* =========================
+HERO SECTION
+========================= */
+
+.hero-section {
+
+    min-height: 90vh;
+
+    background:
+
+        linear-gradient(
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.55)
+        ),
+
+        url('https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=1600');
+
+    background-size: cover;
+
+    background-position: center;
+
+    color: white;
+
+    text-align: center;
+}
+
+.hero-section h1 {
+
+    font-size: 5rem;
+
+    animation: fadeDown 1s ease;
+}
+
+.hero-section p {
+
+    font-size: 1.3rem;
+
+    animation: fadeUp 1.2s ease;
+}
+
+.hero-section .btn {
+
+    transition: 0.3s;
+
+    border-radius: 50px;
+}
+
+.hero-section .btn:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* =========================
+PRODUCT SECTION
+========================= */
+
+.products-section {
+
+    background: #f8fafc;
+}
+
+.tea-card {
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    transition: 0.4s;
+
+    background: white;
+}
+
+.tea-card:hover {
+
+    transform: translateY(-10px);
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.tea-card img {
+
+    height: 260px;
+
+    object-fit: cover;
+
+    transition: 0.5s;
+}
+
+.tea-card:hover img {
+
+    transform: scale(1.05);
+}
+
+.card-body {
+
+    padding: 25px;
+}
+
+.price {
+
+    font-size: 1.2rem;
+}
+
+/* =========================
+AI SECTION
+========================= */
+
+.ai-section {
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #e8fff3,
+            #f6fff9
+        );
+}
+
+.ai-section .card {
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(15px);
+
+    background: rgba(255,255,255,0.8);
+}
+
+textarea.form-control {
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    resize: none;
+}
+
+.ai-section button {
+
+    border-radius: 50px;
+
+    padding: 12px;
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.btn-success {
+
+    background: linear-gradient(
+        90deg,
+        #198754,
+        #20c997
+    );
+
+    border: none;
+}
+
+.btn-success:hover {
+
+    opacity: 0.9;
+
+    transform: translateY(-2px);
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer {
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #111,
+            #222
+        );
+}
+
+/* =========================
+ANIMATIONS
+========================= */
+
+@keyframes fadeDown {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-40px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(40px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width: 768px) {
+
+    .hero-section h1 {
+
+        font-size: 3rem;
+    }
+
+    .hero-section p {
+
+        font-size: 1rem;
+    }
+}

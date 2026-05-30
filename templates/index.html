@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Trà Phúc Thái AI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold fs-3"
+           href="/">
+
+            🍵 TRÀ PHÚC THÁI
+
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item mx-2">
+
+                    <a class="nav-link active"
+                       href="/">
+
+                        Trang Chủ
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item mx-2">
+
+                    <a class="nav-link"
+                       href="#products">
+
+                        Sản Phẩm
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item mx-2">
+
+                    <a class="nav-link"
+                       href="#ai">
+
+                        AI Tư Vấn
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item mx-2">
+
+                    <a class="nav-link"
+                       href="/login">
+
+                        Admin
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+            <!-- SEARCH -->
+
+            <form class="d-flex ms-lg-4 mt-3 mt-lg-0"
+                  method="GET"
+                  action="/search">
+
+                <input class="form-control search-input me-2"
+                       type="search"
+                       name="q"
+                       placeholder="Tìm kiếm trà...">
+
+                <button class="btn btn-light search-btn">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero-section">
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+        <div class="row align-items-center min-vh-100">
+
+            <div class="col-lg-6 text-white">
+
+                <span class="hero-badge">
+
+                    AI Tea Recommendation
+
+                </span>
+
+                <h1 class="hero-title mt-4">
+
+                    Tinh Hoa Trà Việt Kết Hợp Công Nghệ AI
+
+                </h1>
+
+                <p class="hero-desc mt-4">
+
+                    Khám phá những dòng trà cao cấp giúp cải thiện sức khỏe,
+                    thư giãn tinh thần và nâng cao chất lượng cuộc sống.
+
+                </p>
+
+                <div class="mt-5">
+
+                    <a href="#products"
+                       class="btn btn-success btn-lg px-5 py-3 rounded-pill">
+
+                        Khám Phá Ngay
+
+                    </a>
+
+                    <a href="#ai"
+                       class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill ms-3">
+
+                        AI Tư Vấn
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="py-5 bg-white">
+
+    <div class="container">
+
+        <div class="row g-4 text-center">
+
+            <div class="col-md-4">
+
+                <div class="feature-box">
+
+                    <i class="fa-solid fa-leaf feature-icon"></i>
+
+                    <h4 class="mt-4">
+
+                        Trà Tự Nhiên
+
+                    </h4>
+
+                    <p class="text-muted">
+
+                        100% nguyên liệu thiên nhiên an toàn cho sức khỏe
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="feature-box">
+
+                    <i class="fa-solid fa-robot feature-icon"></i>
+
+                    <h4 class="mt-4">
+
+                        AI Thông Minh
+
+                    </h4>
+
+                    <p class="text-muted">
+
+                        AI hỗ trợ gợi ý trà theo nhu cầu người dùng
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="feature-box">
+
+                    <i class="fa-solid fa-heart feature-icon"></i>
+
+                    <h4 class="mt-4">
+
+                        Tốt Cho Sức Khỏe
+
+                    </h4>
+
+                    <p class="text-muted">
+
+                        Hỗ trợ thư giãn, cải thiện tinh thần và giấc ngủ
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="products-section py-5"
+         id="products">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-badge">
+
+                Premium Tea
+
+            </span>
+
+            <h2 class="fw-bold display-5 mt-3">
+
+                Sản Phẩm Nổi Bật
+
+            </h2>
+
+            <p class="text-muted mt-3">
+
+                Những dòng trà được khách hàng yêu thích nhất
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            {% for product in products %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="card tea-card border-0 h-100">
+
+                    <div class="product-image-wrapper">
+
+                        <a href="/product/{{ product.id }}">
+
+                            <img src="{{ product.image }}"
+                                 class="card-img-top">
+
+                        </a>
+
+                    </div>
+
+                    <div class="card-body p-4">
+
+                        <div class="d-flex justify-content-between mb-3">
+
+                            <span class="badge bg-success">
+
+                                Premium
+
+                            </span>
+
+                            <span class="text-success fw-bold">
+
+                                {{ product.price }}đ
+
+                            </span>
+
+                        </div>
+
+                        <h4 class="fw-bold">
+
+                            {{ product.name }}
+
+                        </h4>
+
+                        <p class="text-muted mt-3">
+
+                            {{ product.short_description }}
+
+                        </p>
+
+                        <div class="mt-4">
+
+                            <a href="/product/{{ product.id }}"
+                               class="btn btn-success w-100 rounded-pill">
+
+                                Xem Chi Tiết
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- AI SECTION -->
+
+<section class="ai-section py-5"
+         id="ai">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <span class="section-badge">
+
+                    AI Assistant
+
+                </span>
+
+                <h2 class="display-5 fw-bold mt-4">
+
+                    AI Tư Vấn Trà Thông Minh
+
+                </h2>
+
+                <p class="text-muted mt-4">
+
+                    Hệ thống AI phân tích nhu cầu và đưa ra gợi ý phù hợp
+                    giúp cải thiện sức khỏe và tinh thần.
+
+                </p>
+
+                <div class="mt-4">
+
+                    <div class="d-flex align-items-center mb-3">
+
+                        <i class="fa-solid fa-check text-success me-3"></i>
+
+                        <span>Phân tích nhu cầu người dùng</span>
+
+                    </div>
+
+                    <div class="d-flex align-items-center mb-3">
+
+                        <i class="fa-solid fa-check text-success me-3"></i>
+
+                        <span>Đề xuất nhiều loại trà phù hợp</span>
+
+                    </div>
+
+                    <div class="d-flex align-items-center">
+
+                        <i class="fa-solid fa-check text-success me-3"></i>
+
+                        <span>Ứng dụng NLP Recommendation</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="ai-card">
+
+                    <form method="POST"
+                          action="/ai-recommend">
+
+                        <textarea class="form-control ai-textarea"
+                                  rows="6"
+                                  name="problem"
+                                  placeholder="Ví dụ: Tôi thường xuyên stress, mất ngủ và muốn thư giãn..."></textarea>
+
+                        <button class="btn btn-success btn-lg w-100 rounded-pill mt-4">
+
+                            <i class="fa-solid fa-robot"></i>
+
+                            AI Gợi Ý Ngay
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer-section text-white py-5">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <h3 class="fw-bold">
+
+                    🍵 Trà Phúc Thái
+
+                </h3>
+
+                <p class="mt-4 text-light">
+
+                    Hệ thống kinh doanh trà kết hợp AI recommendation
+                    giúp người dùng lựa chọn sản phẩm phù hợp.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-6 text-lg-end mt-4 mt-lg-0">
+
+                <div class="social-icons">
+
+                    <i class="fa-brands fa-facebook"></i>
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                    <i class="fa-brands fa-tiktok"></i>
+
+                    <i class="fa-brands fa-youtube"></i>
+
+                </div>
+
+                <p class="mt-4 text-light">
+
+                    © 2026 Trà Phúc Thái AI System
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+

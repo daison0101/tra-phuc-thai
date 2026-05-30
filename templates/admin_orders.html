@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Quản Lý Đơn Hàng</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-success shadow">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold"
+           href="/admin">
+
+            🍵 Admin Trà Phúc Thái
+
+        </a>
+
+        <a href="/logout"
+           class="btn btn-light">
+
+            Đăng xuất
+
+        </a>
+
+    </div>
+
+</nav>
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between mb-4">
+
+        <h2 class="fw-bold">
+
+            📦 Quản Lý Đơn Hàng
+
+        </h2>
+
+        <a href="/admin"
+           class="btn btn-success">
+
+            Quản lý sản phẩm
+
+        </a>
+
+    </div>
+
+    <div class="card shadow border-0">
+
+        <div class="card-body">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-success">
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Khách hàng</th>
+
+                        <th>SĐT</th>
+
+                        <th>Địa chỉ</th>
+
+                        <th>Tổng tiền</th>
+
+                        <th>Ngày đặt</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for order in orders %}
+
+                    <tr>
+
+                        <td>
+
+                            #{{ order.id }}
+
+                        </td>
+
+                        <td>
+
+                            {{ order.customer_name }}
+
+                        </td>
+
+                        <td>
+
+                            {{ order.customer_phone }}
+
+                        </td>
+
+                        <td>
+
+                            {{ order.customer_address }}
+
+                        </td>
+
+                        <td class="text-success fw-bold">
+
+                            {{ "{:,}".format(order.total_price) }}đ
+
+                        </td>
+
+                        <td>
+
+                            {{ order.created_at }}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+

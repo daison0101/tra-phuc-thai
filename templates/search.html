@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tìm kiếm sản phẩm</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+
+        body {
+
+            background: #f4f7fb;
+
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .navbar {
+
+            background: linear-gradient(
+                90deg,
+                #0f5132,
+                #198754
+            );
+
+            padding: 18px 0;
+        }
+
+        .navbar-brand {
+
+            font-size: 28px;
+
+            font-weight: bold;
+        }
+
+        .hero-search {
+
+            padding: 80px 0 50px;
+
+            text-align: center;
+        }
+
+        .hero-title {
+
+            font-size: 3rem;
+
+            font-weight: bold;
+        }
+
+        .search-box {
+
+            max-width: 700px;
+
+            margin: auto;
+
+            margin-top: 40px;
+        }
+
+        .search-input {
+
+            border-radius: 50px;
+
+            padding: 18px 25px;
+
+            border: none;
+
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .search-btn {
+
+            border-radius: 50px;
+
+            padding: 0 30px;
+        }
+
+        .tea-card {
+
+            border: none;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            background: white;
+
+            transition: 0.4s;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+
+        .tea-card:hover {
+
+            transform: translateY(-10px);
+        }
+
+        .tea-card img {
+
+            height: 260px;
+
+            object-fit: cover;
+
+            transition: 0.5s;
+        }
+
+        .tea-card:hover img {
+
+            transform: scale(1.05);
+        }
+
+        .price {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #198754;
+        }
+
+        .badge-premium {
+
+            background: linear-gradient(
+                90deg,
+                #198754,
+                #20c997
+            );
+
+            padding: 8px 15px;
+
+            border-radius: 20px;
+
+            color: white;
+
+            font-size: 13px;
+        }
+
+        .empty-box {
+
+            background: white;
+
+            border-radius: 25px;
+
+            padding: 70px;
+
+            text-align: center;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .empty-box i {
+
+            font-size: 70px;
+
+            color: #198754;
+
+            margin-bottom: 25px;
+        }
+
+        .footer {
+
+            margin-top: 100px;
+
+            background: #111827;
+
+            color: white;
+
+            padding: 40px 0;
+
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand"
+           href="/">
+
+            🍵 Trà Phúc Thái
+
+        </a>
+
+        <div>
+
+            <a href="/"
+               class="btn btn-light rounded-pill px-4">
+
+                Trang Chủ
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero-search">
+
+    <div class="container">
+
+        <h1 class="hero-title">
+
+            Kết Quả Tìm Kiếm
+
+        </h1>
+
+        <p class="text-muted mt-3">
+
+            Từ khóa:
+            <strong>"{{ query }}"</strong>
+
+        </p>
+
+        <!-- SEARCH FORM -->
+
+        <form class="search-box"
+              method="GET"
+              action="/search">
+
+            <div class="input-group">
+
+                <input type="text"
+                       class="form-control search-input"
+                       name="q"
+                       placeholder="Tìm kiếm trà..."
+                       value="{{ query }}">
+
+                <button class="btn btn-success search-btn">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="pb-5">
+
+    <div class="container">
+
+        {% if products %}
+
+        <div class="row g-4">
+
+            {% for product in products %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="card tea-card h-100">
+
+                    <a href="/product/{{ product.id }}">
+
+                        <img src="{{ product.image }}"
+                             class="card-img-top">
+
+                    </a>
+
+                    <div class="card-body p-4">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <span class="badge-premium">
+
+                                Premium Tea
+
+                            </span>
+
+                            <span class="price">
+
+                                {{ product.price }}đ
+
+                            </span>
+
+                        </div>
+
+                        <h4 class="fw-bold">
+
+                            {{ product.name }}
+
+                        </h4>
+
+                        <p class="text-muted mt-3">
+
+                            {{ product.description[:100] }}...
+
+                        </p>
+
+                        <a href="/product/{{ product.id }}"
+                           class="btn btn-success w-100 rounded-pill mt-3">
+
+                            Xem Chi Tiết
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <!-- EMPTY STATE -->
+
+        <div class="empty-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <h2 class="fw-bold">
+
+                Không tìm thấy sản phẩm
+
+            </h2>
+
+            <p class="text-muted mt-3">
+
+                Hãy thử tìm kiếm với từ khóa khác
+
+            </p>
+
+            <a href="/"
+               class="btn btn-success rounded-pill px-5 mt-4">
+
+                Quay về trang chủ
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <h4>
+
+            🍵 Trà Phúc Thái AI
+
+        </h4>
+
+        <p class="mt-3 text-light">
+
+            Hệ thống kinh doanh trà kết hợp AI Recommendation
+
+        </p>
+
+        <div class="mt-4">
+
+            <i class="fa-brands fa-facebook fa-xl mx-2"></i>
+
+            <i class="fa-brands fa-instagram fa-xl mx-2"></i>
+
+            <i class="fa-brands fa-tiktok fa-xl mx-2"></i>
+
+            <i class="fa-brands fa-youtube fa-xl mx-2"></i>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+
+</html>
+
