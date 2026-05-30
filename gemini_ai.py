@@ -2,7 +2,11 @@ import google.generativeai as genai
 import json
 import re
 import os
-genai.configure(api_key=os.environ.get("AQ.Ab8RN6LkDW6DOgyM8KgH8oSc0vn_EmxDXP1Q8ipxlbROcLzMyA"))
+
+# =========================
+# GEMINI API KEY (FIX)
+# =========================
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 model = genai.GenerativeModel(
     "gemini-2.5-flash",
@@ -14,20 +18,19 @@ model = genai.GenerativeModel(
 )
 
 # =========================
-# SAFE PARSE JSON
+# SAFE JSON PARSER
 # =========================
 def safe_json_load(text):
     try:
         return json.loads(text)
     except:
-        # bóc JSON từ trong text nếu Gemini lỡ thêm chữ
         match = re.search(r"\{.*\}", text, re.DOTALL)
         if match:
             try:
                 return json.loads(match.group())
             except:
                 return None
-        return None
+    return None
 
 
 # =========================
@@ -35,45 +38,47 @@ def safe_json_load(text):
 # =========================
 def recommend_with_gemini(user_input, products):
 
-    product_text = []
-
-    for p in products:
-        product_text.append({
+    product_text = [
+        {
             "id": p.id,
             "name": p.name,
-            "description": p.description,
-            "short_description": getattr(p, "short_description", "")
-        })
+            "description": p.description or "",
+            "short_description": getattr(p, "short_description", "") or ""
+        }
+        for p in products
+    ]
 
     # =========================
-    # PROMPT FIX (KHÓA CỨNG JSON)
+    # PROMPT VIP (KHÓA NGÔN NGỮ + JSON)
     # =========================
     prompt = f"""
-You are a STRICT JSON API SYSTEM.
+Bạn là AI tư vấn sức khỏe và bán hàng chuyên nghiệp tại Việt Nam.
 
-RULES (VERY IMPORTANT):
-- Output ONLY valid JSON
-- NO markdown
-- NO explanation
-- NO text before or after JSON
-- If you fail -> response will be rejected
+QUY TẮC BẮT BUỘC:
+- CHỈ trả lời tiếng Việt 100%
+- KHÔNG dùng tiếng Anh
+- KHÔNG markdown
+- KHÔNG giải thích ngoài JSON
+- CHỈ chọn sản phẩm có trong danh sách
+- KHÔNG bịa sản phẩm mới
 
-TASK:
-- Analyze user health problem
-- Recommend products ONLY from list
-- Explain reasons clearly
+NHIỆM VỤ:
+- Phân tích vấn đề người dùng
+- Gợi ý tối đa 5 sản phẩm phù hợp
+- Giải thích lý do theo triệu chứng
+- Đưa ra cách dùng và thời điểm uống
 
-PRODUCTS:
+DANH SÁCH SẢN PHẨM:
 {json.dumps(product_text, ensure_ascii=False)}
 
-USER INPUT:
+NGƯỜI DÙNG:
 {user_input}
 
-RETURN JSON FORMAT EXACTLY:
+TRẢ VỀ JSON CHUẨN:
 
 {{
   "user_problem": "string",
-  "summary": "string",
+  "summary": "string (tiếng Việt)",
   "recommendations": [
     {{
       "id": 0,
@@ -100,20 +105,20 @@ RETURN JSON FORMAT EXACTLY:
     if not data:
         return {
             "user_problem": user_input,
-            "summary": "AI không trả về JSON hợp lệ",
+            "summary": "Không thể phân tích dữ liệu từ AI",
             "recommendations": [
                 {
                     "id": 0,
                     "name": "Trà Xanh",
                     "match_score": 50,
-                    "reasons": ["Hỗ trợ sức khỏe tổng thể"],
-                    "benefits": ["Thanh lọc cơ thể"],
-                    "how_to_use": "Uống hằng ngày",
-                    "best_time": "sáng",
+                    "reasons": ["Hỗ trợ thanh lọc cơ thể"],
+                    "benefits": ["Tăng sức khỏe tổng thể"],
+                    "how_to_use": "Uống 1-2 lần mỗi ngày",
+                    "best_time": "Buổi sáng",
                     "warning": ""
                 }
             ],
-            "extra_suggestions": []
+            "extra_suggestions": ["Ngủ đủ giấc", "Giảm căng thẳng"]
         }
 
     return data
